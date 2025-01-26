@@ -9,8 +9,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.geometry.Insets;
+
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -24,6 +25,8 @@ import javafx.scene.text.Font;
  *
  * @author Julian
  */
+
+//Label personalizado para el Ship Chooser
 public class InfoLabel extends Label {
     
     private final static String FONT_PATH= "file:src/model/resources/kenvector_future.ttf";
@@ -34,18 +37,29 @@ public class InfoLabel extends Label {
     
     
     public InfoLabel(String text){
-        
-        setPrefWidth(380);
-        setPrefHeight(49);
-        setPadding(new Insets(40,40,40,40));
+        // Configuración de tamaño
+        setPrefSize(380, 49);
+        setMinSize(380, 49);
+        setMaxSize(380, 49);
+
+        // Configuración del texto
         setText(text);
         setWrapText(true);
+        setAlignment(Pos.CENTER);
+        setPadding(new Insets(0, 10, 0, 10)); // Relleno opcional
+
+        // Configuración de la fuente
         setLabelFont();
-        
-        BackgroundImage backGroundImage = new BackgroundImage(new Image(BACKGROUND_IMAGE,380, 49,false,true),
-                                            BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
-        
-        setBackground(new Background(backGroundImage));
+
+        // Configuración de la imagen de fondo
+        BackgroundImage backgroundImage = new BackgroundImage(
+            new Image(BACKGROUND_IMAGE),
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.CENTER,
+            new BackgroundSize(1.0, 1.0, true, true, false, false) // Ajuste automático
+        );
+        setBackground(new Background(backgroundImage));
     }
     
     private void setLabelFont(){
@@ -55,5 +69,4 @@ public class InfoLabel extends Label {
             setFont(Font.font("Verdana",23));
         }
     }
-    
 }
